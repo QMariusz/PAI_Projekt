@@ -1,0 +1,85 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
+    font-weight: 400;
+    color: #798696;
+	overflow-x:hidden;
+	background-color: #798696;
+}
+
+a {
+	font-family: 'Lato', sans-serif;
+	color: #374050;
+	font-weight: 700;
+}
+a{
+	text-decoration: none;
+	outline: none;
+}
+
+a:hover,
+a:focus{
+	color: #004050;
+	opacity: 0.9;
+}
+
+#logoo{
+	float:left;
+	width: 5%;
+	height: 100px;
+	background-color: blue;
+}
+
+ul,ol{
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+.header {
+	width: 100%;
+	height: 5%;
+	background-color: grey;
+}
+
+#hyperlinks{
+	float: right;
+	width: 1200px;
+}
+
+/*Zrobic jeszcze resize strony*/
+/*Animacja do menu górnego*/
+.main-menu li a {
+	text-transform:uppercase;
+
+}
+
+.main-menu li {
+	width: 100px;
+	height: 50px;
+	float: left;
+	padding-top: 30px;
+	text-align: center;
+	padding-right: 80px;
+	font-size: 20px;
+}
+
+.main-menu li a:after {
+	content:"";
+	display:block;
+	height:2px;
+	background-color:#FF6700;
+	width:100%;
+	-webkit-transform: translateY(5px);
+	-ms-transform: translateY(5px);
+	transform: translateY(5px);
+	opacity:0;
+	-webkit-transition:0.2s all;
+	transition:0.2s all;
+}
+
+.main-menu li a:hover:after , .main-menu li a:focus:after {
+	-webkit-transform: translateY(0px);
+	-ms-transform: translateY(0px);
+	transform: translateY(0px);
+	opacity:1;
+}

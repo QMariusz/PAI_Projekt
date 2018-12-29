@@ -11,15 +11,14 @@ class UserMapper
         $this->database = new Database();
     }
 
-    public function getUser(string $email): User
+    public function getUser(string $nickname): User
     {
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM users WHERE email = :email;');
-            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt = $this->database->connect()->prepare('SELECT * FROM users WHERE nickname = :nickname;');
+            $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-//            print $user['name'];
-            return new User($user['name'], $user['surname'], $user['email'], $user['password']);
+            return new User($user['nickname'], $user['email'], $user['password'], $user['role']);
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();
         }
