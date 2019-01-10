@@ -9,6 +9,7 @@
 require_once('controllers/DefaultController.php');
 require_once('controllers/UploadController.php');
 require_once('controllers/PlayerController.php');
+require_once('controllers/QuizController.php');
 
 class Routing
 {
@@ -36,6 +37,22 @@ class Routing
             'player' => [
                 'controller' => 'PlayerController',
                 'action' => 'player'
+            ],
+            'addQuestion' => [
+                'controller' => 'DefaultController',
+                'action' => 'addQuestion'
+            ],
+            'createQuestion' => [
+                'controller' => 'DefaultController',
+                'action' => 'createQuestion'
+            ],
+            'saveQuestion' => [
+                'controller' => 'QuizController',
+                'action' => 'saveQuestion'
+            ],
+            'authorQuestion' => [
+                'controller' => 'QuizController',
+                'action' => 'loadQuestion'
             ]
         ];
     }

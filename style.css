@@ -35,29 +35,48 @@ ul,ol{
     padding: 0;
     list-style: none
 }
-.header {
+.site{
 	width: 100%;
-	height: 5%;
-	background-color: grey;
+	height: 100%;
+	padding-left: 250px;
+	padding-right: 250px;
+	float: left;
+}
+.menuHeader {
+	width: 80%;
+	height: 100px;
 }
 
-#hyperlinks{
+.hyperlinks{
 	float: right;
-	width: 1200px;
+	width: 1000px;
+}
+
+.questions{
+	float: left;
+	width: 200px;
+	height: 200px;
+	padding-top: 30px;
+	background-color: #374050;
+	font-family: Arial;
+}
+
+.leftMenu{
+	background-color: darkblue;
+	margin-bottom: 2px;
 }
 
 /*Zrobic jeszcze resize strony*/
 /*Animacja do menu górnego*/
 .main-menu li a {
 	text-transform:uppercase;
-
 }
 
 .main-menu li {
 	width: 100px;
 	height: 50px;
 	float: left;
-	padding-top: 30px;
+	padding-top: 50px;
 	text-align: center;
 	padding-right: 80px;
 	font-size: 20px;
@@ -82,4 +101,30 @@ ul,ol{
 	-ms-transform: translateY(0px);
 	transform: translateY(0px);
 	opacity:1;
+}
+
+.authorQuestion{
+	background-color: aqua;
+	height: 20px;
+	margin-top: 2px;
+	border: 1px red solid;
+}
+
+.questions2{
+	background-color: #FF6700;
+	width: 200px;
+	height: 100px;
+}
+
+.main{
+	margin-left: 200px;
+	margin-top: 50px;
+	width: 600px;
+	height: 600px;
+	float: left;
+	color: black;
+}
+
+#selectAnswers{
+	width: 50px;
 }

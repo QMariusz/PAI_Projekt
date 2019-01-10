@@ -3,6 +3,8 @@
 require_once("AppController.php");
 require_once(__DIR__.'/../model/User.php');
 require_once __DIR__.'/../model/UserMapper.php';
+require_once __DIR__.'/../model/Question.php';
+require_once __DIR__.'/../model/QuestionMapper.php';
 
 class DefaultController extends AppController
 {
@@ -14,9 +16,8 @@ class DefaultController extends AppController
 
     public function index()
     {
-        $text = 'Hello there 👋';
 
-        $this->render('index', ['text' => $text]);
+        $this->renderFunction("showChart", 0);
     }
 
     public function login()
@@ -54,5 +55,25 @@ class DefaultController extends AppController
         session_destroy();
 
         $this->render('index', ['text' => 'You have been successfully logged out!']);
+    }
+
+    public function createQuestion(){
+        if(isset($_POST['selectAnswers'])) {
+            $this->renderFunction("createQuestion", $_POST['selectAnswers']);
+        }
+        else{
+            $this->renderFunction("index", 0);
+        }
+    }
+
+    public function addQuestion(){
+        $this->renderFunction("addQuestion", 0);
+    }
+
+    public function renderFunction($method, $number){
+        $questionMapper = new QuestionMapper();
+        $questions = $questionMapper->loadQuestions();
+
+        $this->render('index', $method, $questions, $number);
     }
 }

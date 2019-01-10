@@ -2,4 +2,4 @@
 const SERVERNAME = 'localhost';
 const USERNAME = 'root';
 const PASSWORD = '';
-const DATABASENAME = 'pai';
+const DATABASENAME = 'pai_projekt';

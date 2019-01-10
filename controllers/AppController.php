@@ -28,7 +28,7 @@ class AppController
         return $this->request === 'post';
     }
 
-    public function render(string $fileName = null, $variables = [])
+    public function render(string $fileName = null, $function, $variables = [], $number)
     {
         $view = $fileName ? dirname(__DIR__).'/views/'.get_class($this).'/'.$fileName.'.php' : '';
 
@@ -36,7 +36,9 @@ class AppController
 
         if (file_exists($view)) {
 
-            extract($variables);
+            if($variables!=null) {
+                extract($variables);
+            }
 
             ob_start();
             include $view;

@@ -23,4 +23,26 @@ class UserMapper
             return 'Error: ' . $e->getMessage();
         }
     }
+
+    public function saveUser($user)
+    {
+        try {
+            $stmt = $this->database->connect()->prepare("INSERT INTO users (nickname,  email, password ,role) 
+              VALUES ('".$user->getNickname()."','".$user->getEmail()."','".$user->getPassword()."','".$user->getRole()."')");
+            $stmt->execute();
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
+        }
+    }
+
+    public function deleteUser($id)
+    {
+        try {
+            $stmt = $this->database->connect()->prepare("DELETE FROM users WHERE id = :id;");
+            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
+        }
+    }
 }
