@@ -28,10 +28,10 @@ class DefaultController extends AppController
 
         if ($this->isPost()) {
 
-            $user = $mapper->getUser($_POST['email']);
+            $user = $mapper->getUser($_POST['nickname']);
 
-            if(!$user) {
-                return $this->render('login', ['message' => ['Email not recognized']]);
+            if($user==null) {
+                return $this->render('login', ['message' => ['Nickname not recognized']]);
             }
 
             if ($user->getPassword() !== $_POST['password']) {
@@ -59,10 +59,10 @@ class DefaultController extends AppController
 
     public function createQuestion(){
         if(isset($_POST['selectAnswers'])) {
-            $this->renderFunction("createQuestion", $_POST['selectAnswers']);
+            $this->renderFunction("createQuestion");
         }
         else{
-            $this->renderFunction("index", 0);
+            $this->renderFunction("index");
         }
     }
 
@@ -72,8 +72,18 @@ class DefaultController extends AppController
 
     public function renderFunction($method, $number){
         $questionMapper = new QuestionMapper();
-        $questions = $questionMapper->loadQuestions();
+        $questions = $questionMapper->showQuestions();
 
-        $this->render('index', $method, $questions, $number);
+        $this->render('index', "");
+    }
+
+    public function showQuestions(){
+        $questionMapper = new QuestionMapper();
+
+        header('Content-type: application/json');
+        http_response_code(200);
+
+//        echo $questionMapper->showQuestions() ? json_encode($questionMapper->showQuestions()) : '';
+        $this->render('index', "");
     }
 }

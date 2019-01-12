@@ -4,15 +4,15 @@ body {
     font-weight: 400;
     color: #798696;
 	overflow-x:hidden;
-	background-color: #798696;
+
 }
 
 a {
 	font-family: 'Lato', sans-serif;
-	color: #374050;
+	color: #ffffff;
 	font-weight: 700;
 }
-a{
+a {
 	text-decoration: none;
 	outline: none;
 }
@@ -30,11 +30,6 @@ a:focus{
 	background-color: blue;
 }
 
-ul,ol{
-    margin: 0;
-    padding: 0;
-    list-style: none
-}
 .site{
 	width: 100%;
 	height: 100%;
@@ -55,7 +50,6 @@ ul,ol{
 .questions{
 	float: left;
 	width: 200px;
-	height: 200px;
 	padding-top: 30px;
 	background-color: #374050;
 	font-family: Arial;
@@ -66,42 +60,37 @@ ul,ol{
 	margin-bottom: 2px;
 }
 
-/*Zrobic jeszcze resize strony*/
-/*Animacja do menu górnego*/
-.main-menu li a {
-	text-transform:uppercase;
-}
 
-.main-menu li {
-	width: 100px;
-	height: 50px;
-	float: left;
-	padding-top: 50px;
-	text-align: center;
-	padding-right: 80px;
-	font-size: 20px;
-}
+/*.main-menu li {*/
+	/*width: 100px;*/
+	/*height: 50px;*/
+	/*float: left;*/
+	/*padding-top: 50px;*/
+	/*text-align: center;*/
+	/*padding-right: 80px;*/
+	/*font-size: 20px;*/
+/*}*/
 
-.main-menu li a:after {
-	content:"";
-	display:block;
-	height:2px;
-	background-color:#FF6700;
-	width:100%;
-	-webkit-transform: translateY(5px);
-	-ms-transform: translateY(5px);
-	transform: translateY(5px);
-	opacity:0;
-	-webkit-transition:0.2s all;
-	transition:0.2s all;
-}
+/*.main-menu li a:after {*/
+	/*content:"";*/
+	/*display:block;*/
+	/*height:2px;*/
+	/*background-color:#FF6700;*/
+	/*width:100%;*/
+	/*-webkit-transform: translateY(5px);*/
+	/*-ms-transform: translateY(5px);*/
+	/*transform: translateY(5px);*/
+	/*opacity:0;*/
+	/*-webkit-transition:0.2s all;*/
+	/*transition:0.2s all;*/
+/*}*/
 
-.main-menu li a:hover:after , .main-menu li a:focus:after {
-	-webkit-transform: translateY(0px);
-	-ms-transform: translateY(0px);
-	transform: translateY(0px);
-	opacity:1;
-}
+/*.main-menu li a:hover:after , .main-menu li a:focus:after {*/
+	/*-webkit-transform: translateY(0px);*/
+	/*-ms-transform: translateY(0px);*/
+	/*transform: translateY(0px);*/
+	/*opacity:1;*/
+/*}*/
 
 .authorQuestion{
 	background-color: aqua;
@@ -127,4 +116,8 @@ ul,ol{
 
 #selectAnswers{
 	width: 50px;
+}
+
+.navbar-default {
+	background: #00CC00 !important;
 }

@@ -26,6 +26,10 @@ class Routing
                 'controller' => 'DefaultController',
                 'action' => 'login'
             ],
+            'register' => [
+                'controller' => 'DefaultController',
+                'action' => 'register'
+            ],
             'logout' => [
                 'controller' => 'DefaultController',
                 'action' => 'logout'
@@ -53,6 +57,10 @@ class Routing
             'authorQuestion' => [
                 'controller' => 'QuizController',
                 'action' => 'loadQuestion'
+            ],
+            'showQuestions' => [
+                'controller' => 'DefaultController',
+                'action' => 'showQuestions'
             ]
         ];
     }
@@ -60,7 +68,7 @@ class Routing
     public function run()
     {
         $page = isset($_GET['page'])
-        && isset($this->routes[$_GET['page']]) ? $_GET['page'] : 'index';
+        && isset($this->routes[$_GET['page']]) ? $_GET['page'] : 'login';
 
         if ($this->routes[$page]) {
             $class = $this->routes[$page]['controller'];

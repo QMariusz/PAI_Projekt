@@ -11,24 +11,20 @@ class QuestionMapper
         $this->database = new Database();
     }
 
-    public function loadQuestions()
+    public function showQuestions()
     {
         try {
             $stmt = $this->database->connect()->prepare('SELECT * FROM questions;');
             $stmt->execute();
-            $queryArray = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $questionsArray = array();
-            foreach ($queryArray as $item) {
-                array_push($questionsArray, new Question($item['id'], $item['author_id'], $item['name'], $item['answers'], $item['votes']));
-            }
+            $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            return $questionsArray;
+            return $questions;
         } catch (PDOException $e) {
-            return 'Error: ' . $e->getMessage();
+            die();
         }
     }
 
-    public function saveQuestion($question)
+    public function loadQuestion($question)
     {
         try {
             $stmt = $this->database->connect()->prepare("INSERT INTO questions (author_id, name,  answers, votes) 
@@ -49,7 +45,7 @@ class QuestionMapper
             return 'Error: ' . $e->getMessage();
         }
     }
-    public function loadQuestion($id)
+    public function showQuestion($id)
     {
         try {
             $stmt = $this->database->connect()->prepare('SELECT * FROM questions WHERE id = :id;');

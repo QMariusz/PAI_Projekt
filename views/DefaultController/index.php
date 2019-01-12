@@ -2,50 +2,78 @@
 <html>
 
 <?php include(dirname(__DIR__).'/head.html'); ?>
-<link type="text/css" rel="stylesheet" href="../../style.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js" type="text/javascript"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js" type="text/javascript"></script>-->
+
 <body>
-<div class="site">
-    <div class="menuHeader">
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-default">
 
-            <!-- Logo -->
-            <div id="logoo">
-                <a class="logo" href="index.php">
-                    <img src="../../public/img/logo.jpg" alt="logo" width="150px" height="100px">
-                </a>
-            </div>
-            <!-- /Logo -->
+        <!-- Navbar imge -->
+        <nav class="navbar navbar-dark danger-color">
+            <a class="navbar-brand" href="?page=index">
+                <img src="../../public/img/logo.png" height="30" alt="mdb logo">
+            </a>
+        </nav>
 
-        <!-- Navigation -->
-        <div class="hyperlinks">
-            <ul class="main-menu">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Courses</a></li>
-                <li><a href="?page=addQuestion">Add Question</a></li>
-                <li><a href="contact.html">Contact</a></li>
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+            </span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="?page=index">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?page=addQuestion">Add Question</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?page=showQuestions" onclick="showQuestions()">Your Questions</a>
+                </li>
+
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+
             </ul>
-        </div>
-        <!-- /Navigation -->
+            <!-- Links -->
 
-    </div>
-    <div class="questions">
-        <div class="leftMenu" id="yourQuestions">
-            Twoje glosowania:
-        </div>
-        <div class="leftMenu" id="yourAnswers">
-        Oddane glosy:
-        </div>
-        <div class="leftMenu" id="allQuestions">
-        Wyszukaj gloswania:
-        </div>
-    </div>
+            <!--            <form class="form-inline">-->
+            <!--                <div class="md-form my-0">-->
+            <!--                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
+            <!--                </div>-->
+            <!--            </form>-->
+            <!--        </div>-->
+            <nav class="navbar navbar-dark default-color">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+                </form>
+            </nav>
+            <!-- Collapsible content -->
+
+    </nav>
     <div class="main" id="main">
         <form action="?page=createQuestion" method="post" id="addForm">
         </form>
-        <canvas id="mainChart" width="200" height="250"></canvas></div>
+        <canvas id="mainChart" width="200" height="250"></canvas>
+    </div>
 </div>
+
 <?php
 if(isset($_SESSION) && !empty($_SESSION)) {
     print_r($_SESSION);
@@ -56,24 +84,23 @@ if(isset($_SESSION) && !empty($_SESSION)) {
 
 
     var func = <?php echo $function; ?>;
-    
+    var jArray = <?php echo json_encode($variables); ?>;
     switch(func) {
         case addQuestion:
             addQuestion();
-            loadQuestions();
+            loadQuestions(jArray);
             break;
         case showChart:
             showChart();
-            loadQuestions();
+            loadQuestions(jArray);
             break;
         case createQuestion:
-            loadQuestions();
+            loadQuestions(jArray);
             createQuestion();
             break;
         default:
-            loadQuestions();
+            loadQuestions(jArray);
     }
-
     function showChart() {
         new Chart(document.getElementById("mainChart"), {
             type: 'doughnut',
@@ -159,37 +186,6 @@ if(isset($_SESSION) && !empty($_SESSION)) {
          document.getElementById("addForm").appendChild(newElement);
 
          document.getElementById("addForm").action = "?page=saveQuestion";
-    }
-
-    function loadQuestions(){
-        var jArray = <?php echo json_encode($variables); ?>;
-
-        for(var c in jArray) {
-            //tutaj dodać id usera
-            if(jArray[c]['authorId']==2) {
-                var divZObrazer = document.createElement('a');
-                divZObrazer.id = "questionContainer".concat(jArray[c]['id']);
-                divZObrazer.href = "?=authorQuestion";
-                document.getElementById("yourQuestions").appendChild(divZObrazer);
-
-                var container = document.createElement('div');
-                container.className = "authorQuestion";
-                container.id = "questionContainer";
-                container.innerHTML = jArray[c]['name'];
-                document.getElementById("questionContainer".concat(jArray[c]['id'])).appendChild(container);
-            }
-
-            var divZObrazer = document.createElement('a');
-            divZObrazer.id = "answerContainer".concat(jArray[c]['id']);
-            divZObrazer.href = "?=authorQuestion".concat(jArray[c]['id']);
-            document.getElementById("yourAnswers").appendChild(divZObrazer);
-
-            var container = document.createElement('div');
-            container.className = "authorQuestion";
-            container.id = "answerContainer".concat(jArray[c]['id']);
-            container.innerHTML = jArray[c]['name'];
-            document.getElementById("answerContainer".concat(jArray[c]['id'])).appendChild(container);
-        }
     }
 </script>
 </body>

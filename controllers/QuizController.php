@@ -34,8 +34,8 @@ class QuizController extends AppController
         }
     }
 
-    public function loadQuestion(){
+    public function loadQuestion($id){
         $questionMapper = new QuestionMapper();
-        $questionMapper->loadQuestion(null);
+        $questionMapper->loadQuestion($id);
     }
 }

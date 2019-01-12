@@ -4,7 +4,7 @@
 <?php include(dirname(__DIR__).'/head.html') ?>
 
 <body>
-
+<?php include(dirname(__DIR__).'/navbar.html'); ?>
 <h1>PLAYER</h1>
 <canvas id="doughnut-chart" width="800" height="450"></canvas>
 
