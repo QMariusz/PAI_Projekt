@@ -45,6 +45,7 @@ class QuestionMapper
             return 'Error: ' . $e->getMessage();
         }
     }
+
     public function showQuestion($id)
     {
         try {
@@ -60,6 +61,29 @@ class QuestionMapper
             return $questionsArray;
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();
+        }
+    }
+
+    public function saveQuestion($question)
+    {
+        try {
+            $stmt = $this->database->connect()->prepare("INSERT INTO questions (author_id,  name, answers ,votes) 
+              VALUES ('".$question->getAuthorId()."','".$question->getName()."','".$question->getAnswers()."','".$question->getVotes()."')");
+            $stmt->execute();
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
+        }
+    }
+
+    public function deleteQuestion(int $id): void
+    {
+        try {
+            $stmt = $this->database->connect()->prepare('DELETE FROM questions WHERE id = :id;');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+        catch(PDOException $e) {
+            die();
         }
     }
 }

@@ -31,7 +31,7 @@ class UserMapper
     {
         try {
             $stmt = $this->database->connect()->prepare("INSERT INTO users (nickname,  email, password ,role) 
-              VALUES ('".$user->getNickname()."','".$user->getEmail()."','".$user->getPassword()."','".$user->getRole()."')");
+              VALUES ('".$user->getNickname()."','".$user->getEmail()."','".md5($user->getPassword())."','".$user->getRoleId()."')");
             $stmt->execute();
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();
@@ -44,6 +44,21 @@ class UserMapper
             $stmt = $this->database->connect()->prepare("DELETE FROM users WHERE id = :id;");
             $stmt->bindParam(':id', $id, PDO::PARAM_STR);
             $stmt->execute();
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
+        }
+    }
+
+    public function checkNickname($nickname){
+        try {
+            $stmt = $this->database->connect()->prepare("SELECT * FROM users WHERE nickname = :nickname;");
+            $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($user == false){
+                return false;
+            }
+            return true;
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();
         }

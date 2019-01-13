@@ -14,13 +14,13 @@ class User implements JsonSerializable
     private $password;
     private $roleId;
 
-    public function __construct($id, $nickname, $email, $password, $role)
+    public function __construct($id, $nickname, $email, $password, $roleId)
     {
         $this->id = $id;
         $this->nickname = $nickname;
         $this->email = $email;
         $this->password = $password;
-        $this->roleId = $role;
+        $this->roleId = $roleId;
     }
 
     public function jsonSerialize()

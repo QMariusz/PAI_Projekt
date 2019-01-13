@@ -46,13 +46,13 @@ class Routing
                 'controller' => 'DefaultController',
                 'action' => 'addQuestion'
             ],
-            'createQuestion' => [
-                'controller' => 'DefaultController',
-                'action' => 'createQuestion'
-            ],
             'saveQuestion' => [
                 'controller' => 'QuizController',
                 'action' => 'saveQuestion'
+            ],
+            'deleteQuestion' => [
+                'controller' => 'DefaultController',
+                'action' => 'deleteQuestion'
             ],
             'authorQuestion' => [
                 'controller' => 'QuizController',
@@ -61,6 +61,10 @@ class Routing
             'showQuestions' => [
                 'controller' => 'DefaultController',
                 'action' => 'showQuestions'
+            ],
+            'questions' => [
+                'controller' => 'DefaultController',
+                'action' => 'questions'
             ]
         ];
     }

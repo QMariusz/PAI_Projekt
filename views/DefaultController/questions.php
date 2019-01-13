@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html>
+
+<?php include(dirname(__DIR__).'/head.html'); ?>
+
+<body>
+<?php
+if(isset($_SESSION) && !empty($_SESSION)) {
+    print_r($_SESSION);
+}
+?>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark navbar-default">
 
@@ -44,26 +55,46 @@
                 </li>
 
             </ul>
-            <!-- Links -->
-
-            <!--            <form class="form-inline">-->
-            <!--                <div class="md-form my-0">-->
-            <!--                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
-            <!--                </div>-->
-            <!--            </form>-->
-            <!--        </div>-->
             <nav class="navbar navbar-dark default-color">
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
                 </form>
             </nav>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="btn btn-info btn-lg float-left" href="?page=logout" role="button">Logout</a>
+                </li>
+            </ul>
             <!-- Collapsible content -->
 
     </nav>
+    <div class="row">
+        <h1 class="col-12 pl-0">ADMIN PANEL</h1>
+
+        <h4 class="mt-4">Your data:</h4>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Author</th>
+                <th>Question</th>
+                <th>Answers</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody class="question_list">
+            </tbody>
+        </table>
+    </div>
     <div class="main" id="main">
         <form action="?page=createQuestion" method="post" id="addForm">
         </form>
         <canvas id="mainChart" width="200" height="250"></canvas>
     </div>
 </div>
+<script>
+    window.onload = showQuestions();
+</script>
+</body>
+</html>
