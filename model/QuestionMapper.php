@@ -27,7 +27,7 @@ class QuestionMapper
     public function loadQuestion($question)
     {
         try {
-            $stmt = $this->database->connect()->prepare("INSERT INTO questions (author_id, name,  answers, votes) 
+            $stmt = $this->database->connect()->prepare("INSERT INTO questions (author_id, question_name,  answers, votes) 
               VALUES ('".$question->getAuthorId()."','".$question->getName()."','".$question->getAnswers()."','".$question->getVotes()."')");
             $stmt->execute();
         } catch (PDOException $e) {
@@ -55,7 +55,7 @@ class QuestionMapper
             $queryArray = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $questionsArray = array();
             foreach ($queryArray as $item) {
-                array_push($questionsArray, new Question($item['id'], $item['author_id'], $item['name'], $item['answers'], $item['votes']));
+                array_push($questionsArray, new Question($item['id'], $item['author_id'], $item['question_name'], $item['answers'], $item['votes']));
             }
 
             return $questionsArray;
@@ -67,7 +67,7 @@ class QuestionMapper
     public function saveQuestion($question)
     {
         try {
-            $stmt = $this->database->connect()->prepare("INSERT INTO questions (author_id,  name, answers ,votes) 
+            $stmt = $this->database->connect()->prepare("INSERT INTO questions (author_id,  question_name, answers ,votes) 
               VALUES ('".$question->getAuthorId()."','".$question->getName()."','".$question->getAnswers()."','".$question->getVotes()."')");
             $stmt->execute();
         } catch (PDOException $e) {

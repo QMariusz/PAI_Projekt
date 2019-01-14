@@ -8,12 +8,10 @@ function showQuestions(){
         .done((res) => {
             console.log(res);
         $list.empty();
-        //robimy pêtlê po zwróconej kolekcji
-        //do³¹czaj¹c do tabeli kolejne wiersze
         res.forEach(el => {
-            $list.append(`<tr onclick="showChart()">
+            $list.append(`<tr onclick='showChart(`+ "\"" + el.question_name + "\"" + "," + "\"" + el.answers + "\"" + "," + "\"" + el.votes + "\"" + `)'>
                 <td>${el.author_id}</td>
-                <td>${el.name}</td>
+                <td>${el.question_name}</td>
                 <td>${el.answers}</td>
                 <td>${el.votes}</td>
                 <td>
@@ -24,33 +22,6 @@ function showQuestions(){
                 </tr>`);
         })
     });
-
-    // for(var c in jArray) {
-    //     //tutaj dodaæ id usera
-    //     if(jArray[c]['authorId']==2) {
-    //         var divZObrazer = document.createElement('a');
-    //         divZObrazer.id = "questionContainer".concat(jArray[c]['id']);
-    //         divZObrazer.href = "?=authorQuestion";
-    //         document.getElementById("yourQuestions").appendChild(divZObrazer);
-    //
-    //         var container = document.createElement('div');
-    //         container.className = "authorQuestion";
-    //         container.id = "questionContainer";
-    //         container.innerHTML = jArray[c]['name'];
-    //         document.getElementById("questionContainer".concat(jArray[c]['id'])).appendChild(container);
-    //     }
-    //
-    //     var divZObrazer = document.createElement('a');
-    //     divZObrazer.id = "answerContainer".concat(jArray[c]['id']);
-    //     divZObrazer.href = "?=authorQuestion".concat(jArray[c]['id']);
-    //     document.getElementById("yourAnswers").appendChild(divZObrazer);
-    //
-    //     var container = document.createElement('div');
-    //     container.className = "authorQuestion";
-    //     container.id = "answerContainer".concat(jArray[c]['id']);
-    //     container.innerHTML = jArray[c]['name'];
-    //     document.getElementById("answerContainer".concat(jArray[c]['id'])).appendChild(container);
-    // }
 }
 
 function addAnswerField() {
@@ -113,6 +84,30 @@ function deleteQuestion(id) {
         success: function() {
             alert('Selected user successfully deleted from database!');
             showQuestions();
+        }
+    });
+}
+
+function showChart(name, answers, votes) {
+    answ = answers.split(",");
+    vote = votes.split(",");
+    allColors = ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"];
+    const shuffled = allColors.sort(() => .5 - Math.random());// shuffle
+    colors = shuffled.slice(0,vote.length);
+    new Chart(document.getElementById("mainChart"), {
+        type: 'doughnut',
+        data: {
+            labels: answ,
+            datasets: [{
+                backgroundColor: colors,
+                data: vote
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: name
+            }
         }
     });
 }

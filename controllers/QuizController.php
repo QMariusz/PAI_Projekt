@@ -16,23 +16,26 @@ class QuizController extends AppController
         parent::__construct();
     }
 
-    public function saveQuestion(){
-        $answers = "";
-        $votes = "";
-
-        foreach ($_POST as $key => $value){
-            if(is_int($key)){
-                $answers = $answers.$value.", ";
-                $votes = $votes."0, ";
-            }
-        }
-
-        if ($this->isPost()) {
-            $question = new Question(null, 2, $_POST['textarea'], $answers, $votes);
-            $questionMapper = new QuestionMapper();
-            $questionMapper->saveQuestion($question);
-        }
-    }
+//    public function saveQuestion(){
+//        $answers = "";
+//        $votes = "";
+//
+//        foreach ($_POST as $key => $value){
+//            if(is_int($key)){
+//                $answers = $answers.$value.",";
+//                $votes = $votes."0,";
+//            }
+////            $answers = substr($answers, 0, -1);
+////            $votes = substr($votes, 0, -1);
+////                $newarraynama=rtrim($arraynama,", ");
+//        }
+//
+//        if ($this->isPost()) {
+//            $question = new Question(null, 2, $_POST['textarea'], $answers, $votes);
+//            $questionMapper = new QuestionMapper();
+//            $questionMapper->saveQuestion($question);
+//        }
+//    }
 
     public function loadQuestion($id){
         $questionMapper = new QuestionMapper();

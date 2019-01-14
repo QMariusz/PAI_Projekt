@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-11">
-                        <input type="text" name="answer1" class="form-control" id="inputAnswer" placeholder="answer" required/>
+                        <input type="text" name="answer0" class="form-control" id="inputAnswer" placeholder="answer" required/>
                     </div>
                 </div>
                 </div>

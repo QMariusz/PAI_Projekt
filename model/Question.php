@@ -28,7 +28,7 @@ class Question implements JsonSerializable
         return [
             'id' => $this->id,
             'authorId' => $this->authorId,
-            'name' => $this->name,
+            'qName' => $this->name,
             'answers' => $this->answers,
             'votes' => $this->votes
         ];

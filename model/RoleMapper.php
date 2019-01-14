@@ -31,7 +31,7 @@ class RoleMapper
     public function saveUsers($question)
     {
         try {
-            $stmt = $this->database->connect()->prepare("INSERT INTO questions (name,  author_id, answers, votes) 
+            $stmt = $this->database->connect()->prepare("INSERT INTO questions (question_name,  author_id, answers, votes) 
               VALUES ('".$question->getName()."','".$question->getAuthorId()."','".$question->getAnswers()."','".$question->getVotes()."')");
             $stmt->execute();
         } catch (PDOException $e) {

@@ -110,6 +110,8 @@ class DefaultController extends AppController
                         $votes = $votes.'0, ';
                     }
                 }
+                $answers = rtrim($answers,  ", ");
+                $votes = rtrim($votes,  ", ");
                 $question = new Question(null, $_SESSION['id'], $_POST['questionName'], $answers,$votes);
                 $questionMapper->saveQuestion($question);
                 return $this->render('index', ['text' => 'Question created']);
