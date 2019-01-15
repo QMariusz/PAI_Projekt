@@ -135,7 +135,11 @@ class DefaultController extends AppController
         http_response_code(200);
 
         echo $questionMapper->showQuestions() ? json_encode($questionMapper->showQuestions()) : '';
-//        $this->render('index', "");
+    }
+
+    public function search(){
+
+        $this->render('search', "");
     }
 
     public function deleteQuestion(): void
@@ -153,5 +157,13 @@ class DefaultController extends AppController
 
     public function questions(){
         $this->render("questions", "");
+    }
+
+    public function searchResult(){
+        $questionMapper = new QuestionMapper();
+        header('Content-type: application/json');
+        http_response_code(200);
+
+        echo $questionMapper->searchResult($_POST['search']) ? json_encode($questionMapper->searchResult($_POST['search'])) : '';
     }
 }

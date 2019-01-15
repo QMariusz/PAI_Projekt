@@ -65,7 +65,15 @@ class Routing
             'questions' => [
                 'controller' => 'DefaultController',
                 'action' => 'questions'
-            ]
+            ],
+            'search' => [
+                'controller' => 'DefaultController',
+                'action' => 'search'
+            ],
+            'searchResult' => [
+                'controller' => 'DefaultController',
+                'action' => 'searchResult'
+            ],
         ];
     }
 

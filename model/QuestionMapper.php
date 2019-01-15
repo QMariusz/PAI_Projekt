@@ -1,6 +1,7 @@
 <?php
 require_once 'Question.php';
 require_once __DIR__.'/../Database.php';
+require_once __DIR__.'/../views/DefaultController/search.php';
 
 class QuestionMapper
 {
@@ -83,6 +84,20 @@ class QuestionMapper
             $stmt->execute();
         }
         catch(PDOException $e) {
+            die();
+        }
+    }
+
+    public function searchResult($likeString)
+    {
+        try {
+            $stmt = $this->database->connect()->prepare('SELECT * FROM questions WHERE question_name LIKE :question_name;');
+            $stmt->bindParam(':question_name', $likeString, PDO::PARAM_INT);
+            $stmt->execute();
+            $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $questions;
+        } catch (PDOException $e) {
             die();
         }
     }

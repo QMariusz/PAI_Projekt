@@ -23,6 +23,7 @@
                         <input type="text" class="form-control" id="inputQuestionName" name="questionName" placeholder="Question" required/>
                     </div>
                 </div>
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search" name="search" required>
                 <div class="form-group row">
                     <div class="col-sm-11">
                         <input type="text" name="answer0" class="form-control" id="inputAnswer" placeholder="answer" required/>

@@ -56,9 +56,9 @@ if(isset($_SESSION) && !empty($_SESSION)) {
 
             </ul>
             <nav class="navbar navbar-dark default-color">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+                <form class="form-inline my-2 my-lg-0" method="POST" >
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search" name="search">
+                    <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" id="sumbit" onclick=showQuestions('searchResult')>Search</button>
                 </form>
             </nav>
             <ul class="navbar-nav mr-auto">
@@ -70,8 +70,8 @@ if(isset($_SESSION) && !empty($_SESSION)) {
 
     </nav>
     <div class="row">
-        <h1 class="col-12 pl-0">ADMIN PANEL</h1>
-
+        <h1 class="col-12 pl-0">Search result for </h1>
+        <h3 class="col-12 pl-0" id="searchText"></h3>
         <h4 class="mt-4">Your data:</h4>
         <table class="table table-hover">
             <thead>
@@ -87,14 +87,21 @@ if(isset($_SESSION) && !empty($_SESSION)) {
             </tbody>
         </table>
     </div>
+    <nav class="navbar navbar-dark default-color">
+        <form class="form-inline my-2 my-lg-0" action="?page=search" method="POST">
+            <div class="form-group row">
+                <div class="col-sm-11">
+                    <input type="text" name="answer0" class="form-control" id="inputSearch" placeholder="answer" required/>
+                </div>
+            </div>
+            <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" id="submit" onclick="showQuestions('searchResult')" >Search</button>
+        </form>
+    </nav>
     <div class="main" id="main">
         <form action="?page=createQuestion" method="post" id="addForm">
         </form>
         <canvas id="mainChart" width="200" height="250"></canvas>
     </div>
 </div>
-<script>
-    window.onload = showQuestions("showQuestions");
-</script>
 </body>
 </html>

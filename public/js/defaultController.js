@@ -1,8 +1,12 @@
-function showQuestions(){
+function showQuestions(end){
     const apiUrl = "http://localhost:8001";
     const $list = $('.question_list');
+    const endpoint = '/?page=' + end;
+    var inputSearch = $('#inputSearch').val();
     $.ajax({
-        url : apiUrl + '/?page=showQuestions',
+        type: 'POST',
+        url : apiUrl + endpoint,
+        data: {search: inputSearch},
         dataType : 'json'
     })
         .done((res) => {
@@ -111,3 +115,4 @@ function showChart(name, answers, votes) {
         }
     });
 }
+
