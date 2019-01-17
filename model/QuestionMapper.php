@@ -47,7 +47,7 @@ class QuestionMapper
         }
     }
 
-    public function showQuestion($id)
+    public function getQuestionById($id)
     {
         try {
             $stmt = $this->database->connect()->prepare('SELECT * FROM questions WHERE id = :id;');
@@ -62,6 +62,19 @@ class QuestionMapper
             return $questionsArray;
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();
+        }
+    }
+
+    public function getAllQuestions(){
+        try {
+            $stmt = $this->database->connect()->prepare('SELECT * FROM questions');
+            $stmt->execute();
+
+            $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $questions;
+        }
+        catch(PDOException $e) {
+            die();
         }
     }
 
@@ -91,14 +104,29 @@ class QuestionMapper
     public function searchResult($likeString)
     {
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM questions WHERE question_name LIKE :question_name;');
-            $stmt->bindParam(':question_name', $likeString, PDO::PARAM_INT);
+            $a = "%$likeString%";
+            $stmt = $this->database->connect()->prepare('SELECT * FROM questions WHERE question_name LIKE :question');
+            $stmt->bindParam(':question', $a);
             $stmt->execute();
             $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $questions;
         } catch (PDOException $e) {
             die();
+        }
+    }
+
+    public function saveVote()
+    {
+        try {
+//            str split tutaj
+//            str_split ( string $string [, int $split_length = 1 ] ) : array
+//            potem szczytaæ z bazy answers i update +1 vote na odpowiedni¹ odpowiedz
+            $stmt = $this->database->connect()->prepare("INSERT INTO questions (author_id,  question_name, answers ,votes) 
+              VALUES ('".$question->getAuthorId()."','".$question->getName()."','".$question->getAnswers()."','".$question->getVotes()."')");
+            $stmt->execute();
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
         }
     }
 }

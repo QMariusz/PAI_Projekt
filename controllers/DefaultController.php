@@ -129,12 +129,12 @@ class DefaultController extends AppController
     }
 
     public function showQuestions(){
-        $questionMapper = new QuestionMapper();
+    $questionMapper = new QuestionMapper();
 
-        header('Content-type: application/json');
-        http_response_code(200);
+    header('Content-type: application/json');
+    http_response_code(200);
 
-        echo $questionMapper->showQuestions() ? json_encode($questionMapper->showQuestions()) : '';
+    echo $questionMapper->showQuestions() ? json_encode($questionMapper->showQuestions()) : '';
     }
 
     public function search(){

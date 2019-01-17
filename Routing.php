@@ -1,15 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mariusz
- * Date: 23.12.2018
- * Time: 14:23
- */
-
 require_once('controllers/DefaultController.php');
-require_once('controllers/UploadController.php');
-require_once('controllers/PlayerController.php');
-require_once('controllers/QuizController.php');
+require_once('controllers/VoteController.php');
+require_once('controllers/AdminController.php');
 
 class Routing
 {
@@ -66,6 +58,10 @@ class Routing
                 'controller' => 'DefaultController',
                 'action' => 'questions'
             ],
+            'deleteUser' => [
+                'controller' => 'AdminController',
+                'action' => 'deleteUser'
+            ],
             'search' => [
                 'controller' => 'DefaultController',
                 'action' => 'search'
@@ -74,6 +70,34 @@ class Routing
                 'controller' => 'DefaultController',
                 'action' => 'searchResult'
             ],
+            'voteSearch' => [
+                'controller' => 'VoteController',
+                'action' => 'showOtherQuestions'
+            ],
+            'vote' => [
+                'controller' => 'VoteController',
+                'action' => 'index'
+            ],
+            'questionVote' => [
+                'controller' => 'VoteController',
+                'action' => 'questionVote'
+            ],
+            'admin' => [
+                'controller' => 'AdminController',
+                'action' => 'index'
+            ],
+            'allQuestions' => [
+                'controller' => 'AdminController',
+                'action' => 'getAllQuestions'
+            ],
+            'allUsers' => [
+                'controller' => 'AdminController',
+                'action' => 'getAllUsers'
+            ],
+            'formVote' => [
+                'controller' => 'VoteController',
+                'action' => 'formVote'
+            ]
         ];
     }
 

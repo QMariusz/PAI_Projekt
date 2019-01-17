@@ -121,3 +121,7 @@ a:focus{
 .navbar-default {
 	background: #00CC00 !important;
 }
+
+.lewo{
+	float: left;
+}
