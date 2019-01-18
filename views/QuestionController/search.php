@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 
-<?php include(dirname(__DIR__).'/head.html'); ?>
+<?php include(dirname(__DIR__) . '/head.html'); ?>
 
 <body>
 <div class="container">
-    <?php include(dirname(__DIR__).'/navbar.html'); ?>
+    <?php include(dirname(__DIR__) . '/navbar.html'); ?>
     <nav class="navbar navbar-dark default-color">
         <div class="form-group row">
             <div class="col-sm-11">

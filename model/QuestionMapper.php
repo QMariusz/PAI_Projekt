@@ -116,17 +116,33 @@ class QuestionMapper
         }
     }
 
-    public function saveVote()
+    public function saveVote($dane)
     {
         try {
-//            str split tutaj
-//            str_split ( string $string [, int $split_length = 1 ] ) : array
-//            potem szczytaæ z bazy answers i update +1 vote na odpowiedni¹ odpowiedz
-            $stmt = $this->database->connect()->prepare("INSERT INTO questions (author_id,  question_name, answers ,votes) 
-              VALUES ('".$question->getAuthorId()."','".$question->getName()."','".$question->getAnswers()."','".$question->getVotes()."')");
+            $idAndAnswer = explode(",", $dane);
+            $answers = $this->getAnswersById($idAndAnswer[0]);
+            $answersArray = explode(", ", $answers);
+            $answersArray[$idAndAnswer[1]] += 1;
+            $updatedAnswers =  implode(", ",$answersArray);
+            $stmt = $this->database->connect()->prepare("UPDATE questions SET votes = :votes WHERE id = :id");
+            $stmt->bindParam(':votes', $updatedAnswers, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $idAndAnswer[0], PDO::PARAM_INT);
             $stmt->execute();
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();
+        }
+    }
+
+    public function getAnswersById($id)
+    {
+        try {
+            $stmt = $this->database->connect()->prepare('SELECT votes FROM questions WHERE id = :id;');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $answers = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $answers['votes'];
+        } catch (PDOException $e) {
+            die();
         }
     }
 }

@@ -44,7 +44,7 @@ function countMyself($value) {
 function showChart(name, answers, votes) {
     answ = answers.split(",");
     vote = votes.split(",");
-    allColors = ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"];
+    allColors = ["#F1C40F", "#A93226", "#76448A", "#1F618D", "#17A589", "#229954", "#CA6F1E", "#BA4A00", "#D0D3D4", "#839192", "#212F3D", "#E67E22"];
     const shuffled = allColors.sort(() => .5 - Math.random());// shuffle
     colors = shuffled.slice(0,vote.length);
     new Chart(document.getElementById("mainChart"), {

@@ -55,7 +55,7 @@ function showAnswersToVote(id, name, answers) {
     $list.append(name);
     for (var i = 0; i < odp.length; i++) {
         $list.append(`<div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="`+id + "," + i +`" checked>
+            <input class="form-check-input" type="radio" name="voteRadio" id="voteRadio" value="`+id + "," + i +`" checked>
             <label class="form-check-label" for="exampleRadios1">
             ` + odp[i]+ `
             </label>

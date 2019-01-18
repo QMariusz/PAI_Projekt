@@ -34,7 +34,7 @@ class VoteController extends AppController
 
     public function formVote(){
         $mapper = new QuestionMapper();
-        $mapper->saveVote();
+        $mapper->saveVote($_POST['voteRadio']);
 
         return $this->render('index', ['text' => 'Account created']);
     }

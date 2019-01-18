@@ -30,7 +30,7 @@ class DefaultController extends AppController
 
             $user = $mapper->getUser($_POST['nickname']);
 
-            if($user==null) {
+            if ($user == null) {
                 return $this->render('login', ['message' => ['Nickname not recognized']]);
             }
 
@@ -49,25 +49,20 @@ class DefaultController extends AppController
         $this->render('login');
     }
 
-    public function register(){
+    public function register()
+    {
         $mapper = new UserMapper();
 
         if ($this->isPost()) {
 
-            if($mapper->checkNickname($_POST['nickname'])) {
+            if ($mapper->checkNickname($_POST['nickname'])) {
                 return $this->render('register', ['message' => ['Nickname already in use']]);
             }
 
-//            if ($user->getPassword() !== $_POST['password']) {
-//                return $this->render('login', ['message' => ['Wrong password']]);
-//            }
-            else {
-//                $_SESSION["id"] = $user->getEmail();
-//                $_SESSION["role"] = $user->getRole();
-
-//                $url = "http://$_SERVER[HTTP_HOST]/";
-//                header("Location: {$url}?page=index");
-//                exit();
+            else if($_POST['password'] !== $_POST['passwordConfirm']){
+                return $this->render('register', ['message' => ['Passwords are different']]);
+            }
+            else{
                 $user = new User(null, $_POST['nickname'], $_POST['email'], $_POST['password'], 1);
                 $mapper->saveUser($user);
                 return $this->render('login', ['text' => 'Account created']);
@@ -83,87 +78,5 @@ class DefaultController extends AppController
         session_destroy();
 
         $this->render('login', ['text' => 'You have been successfully logged out!']);
-    }
-
-    public function addQuestion(){
-
-        $questionMapper = new QuestionMapper();
-        if ($this->isPost()) {
-
-//
-//            if($mapper->checkNickname($_POST['nickname'])) {
-//                return $this->render('register', ['message' => ['Nickname already in use']]);
-//            }
-
-//            else {
-//                $_SESSION["id"] = $user->getEmail();
-//                $_SESSION["role"] = $user->getRole();
-
-//                $url = "http://$_SERVER[HTTP_HOST]/";
-//                header("Location: {$url}?page=index");
-//                exit();
-                $answers = '';
-                $votes = '';
-                foreach($_POST as $key=>$value ) {
-                    if (strpos($key, 'answer') !== false) {
-                        $answers = $answers.$value.", ";
-                        $votes = $votes.'0, ';
-                    }
-                }
-                $answers = rtrim($answers,  ", ");
-                $votes = rtrim($votes,  ", ");
-                $question = new Question(null, $_SESSION['id'], $_POST['questionName'], $answers,$votes);
-                $questionMapper->saveQuestion($question);
-                return $this->render('index', ['text' => 'Question created']);
-//            }
-        }
-
-        $this->render('addQuestion', "");
-    }
-
-    public function renderFunction($method, $number){
-        $questionMapper = new QuestionMapper();
-        $questions = $questionMapper->showQuestions();
-
-        $this->render('index', "");
-    }
-
-    public function showQuestions(){
-    $questionMapper = new QuestionMapper();
-
-    header('Content-type: application/json');
-    http_response_code(200);
-
-    echo $questionMapper->showQuestions() ? json_encode($questionMapper->showQuestions()) : '';
-    }
-
-    public function search(){
-
-        $this->render('search', "");
-    }
-
-    public function deleteQuestion(): void
-    {
-        if (!isset($_POST['id'])) {
-            http_response_code(404);
-            return;
-        }
-
-        $question = new QuestionMapper();
-        $question->deleteQuestion((int)$_POST['id']);
-
-        http_response_code(200);
-    }
-
-    public function questions(){
-        $this->render("questions", "");
-    }
-
-    public function searchResult(){
-        $questionMapper = new QuestionMapper();
-        header('Content-type: application/json');
-        http_response_code(200);
-
-        echo $questionMapper->searchResult($_POST['search']) ? json_encode($questionMapper->searchResult($_POST['search'])) : '';
     }
 }
