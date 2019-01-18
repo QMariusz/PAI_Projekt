@@ -1,7 +1,6 @@
 <?php
 require_once 'Question.php';
 require_once __DIR__.'/../Database.php';
-require_once __DIR__.'/../views/DefaultController/search.php';
 
 class QuestionMapper
 {
