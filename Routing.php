@@ -1,15 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mariusz
- * Date: 23.12.2018
- * Time: 14:23
- */
-
 require_once('controllers/DefaultController.php');
-require_once('controllers/UploadController.php');
-require_once('controllers/PlayerController.php');
-require_once('controllers/QuizController.php');
+require_once('controllers/VoteController.php');
+require_once('controllers/AdminController.php');
+require_once('controllers/QuestionController.php');
 
 class Routing
 {
@@ -34,37 +27,61 @@ class Routing
                 'controller' => 'DefaultController',
                 'action' => 'logout'
             ],
-            'upload' => [
-                'controller' => 'UploadController',
-                'action' => 'upload'
-            ],
-            'player' => [
-                'controller' => 'PlayerController',
-                'action' => 'player'
-            ],
             'addQuestion' => [
-                'controller' => 'DefaultController',
+                'controller' => 'QuestionController',
                 'action' => 'addQuestion'
             ],
-            'saveQuestion' => [
-                'controller' => 'QuizController',
-                'action' => 'saveQuestion'
-            ],
             'deleteQuestion' => [
-                'controller' => 'DefaultController',
+                'controller' => 'QuestionController',
                 'action' => 'deleteQuestion'
             ],
-            'authorQuestion' => [
-                'controller' => 'QuizController',
-                'action' => 'loadQuestion'
-            ],
             'showQuestions' => [
-                'controller' => 'DefaultController',
+                'controller' => 'QuestionController',
                 'action' => 'showQuestions'
             ],
             'questions' => [
-                'controller' => 'DefaultController',
+                'controller' => 'QuestionController',
                 'action' => 'questions'
+            ],
+            'deleteUser' => [
+                'controller' => 'AdminController',
+                'action' => 'deleteUser'
+            ],
+            'search' => [
+                'controller' => 'QuestionController',
+                'action' => 'search'
+            ],
+            'searchResult' => [
+                'controller' => 'QuestionController',
+                'action' => 'searchResult'
+            ],
+            'voteSearch' => [
+                'controller' => 'VoteController',
+                'action' => 'showOtherQuestions'
+            ],
+            'vote' => [
+                'controller' => 'VoteController',
+                'action' => 'index'
+            ],
+            'questionVote' => [
+                'controller' => 'VoteController',
+                'action' => 'questionVote'
+            ],
+            'admin' => [
+                'controller' => 'AdminController',
+                'action' => 'index'
+            ],
+            'allQuestions' => [
+                'controller' => 'AdminController',
+                'action' => 'getAllQuestions'
+            ],
+            'allUsers' => [
+                'controller' => 'AdminController',
+                'action' => 'getAllUsers'
+            ],
+            'formVote' => [
+                'controller' => 'VoteController',
+                'action' => 'formVote'
             ]
         ];
     }

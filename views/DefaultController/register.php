@@ -41,6 +41,14 @@
                         <input type="password" name="password" class="form-control" id="inputPassword" placeholder="password" type="password" required/>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-1 col-form-label">
+                        <i class="material-icons md-48">lock</i>
+                    </label>
+                    <div class="col-sm-11">
+                        <input type="password" name="passwordConfirm" class="form-control" id="inputPasswordConfirm" placeholder="confirm password" type="password" required/>
+                    </div>
+                </div>
                 <input type="submit" value="Create account" class="btn btn-success btn-lg float-right" />
                 <a class="btn btn-secondary btn-lg float-left" href="?page=login" role="button">Back</a>
             </form>
