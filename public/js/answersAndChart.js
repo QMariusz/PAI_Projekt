@@ -21,7 +21,7 @@ function deleteAnswerField() {
     const a = countMyself(false);
     if(a>0) {
         document.getElementById("answer" + a).remove();
-        document.getElementById("buttonPlus").className = "btn btn-success btn-lg float-left";
+        document.getElementById("buttonPlus").className = "btn btn-warning btn-lg float-left";
     }
     else{
         countMyself(true);

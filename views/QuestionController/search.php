@@ -11,8 +11,8 @@
             <div class="col-sm-11">
                 <input type="text" name="answer0" class="form-control" id="inputSearch" placeholder="answer" required/>
             </div>
+            <a class="btn btn-primary btn-lg float-left" type="submit" id="submit" onclick="showQuestions('searchResult')" role="button">Search</a>
         </div>
-        <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" id="submit" onclick="showQuestions('searchResult')" >Search</button>
     </nav>
     <div class="lewo">
         <table class="table table-hover">

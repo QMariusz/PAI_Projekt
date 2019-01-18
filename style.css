@@ -1,15 +1,9 @@
 body {
-	font-size: 18px;
+	font-size: 20px;
 }
 
-a {
-	font-family: 'Lato', sans-serif;
-	color: #ffffff;
-	font-weight: 700;
-}
-a {
-	text-decoration: none;
-	outline: none;
+a{
+	margin-left: 5px;
 }
 
 a:hover,

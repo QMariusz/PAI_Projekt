@@ -39,7 +39,7 @@
         </table>
     </div>
     <div>
-    <a class="btn btn-secondary btn-lg float-center" href="?page=index" role="button">Back</a>
+    <a class="btn btn-primary btn-lg float-center" href="?page=index" role="button">Back</a>
     </div>
     <div class="main" id="main">
         <form action="?page=createQuestion" method="post" id="addForm">
