@@ -31,7 +31,7 @@ if(isset($_SESSION) && !empty($_SESSION)) {
     </div>
 </div>
 <script>
-    window.onload = showQuestions("showQuestions");
+    window.onload = showQuestions("showYourQuestions");
 </script>
 </body>
 </html>

@@ -57,7 +57,15 @@ class Routing
             ],
             'voteSearch' => [
                 'controller' => 'VoteController',
-                'action' => 'showOtherQuestions'
+                'action' => 'showOtherQuestionsAnswered'
+            ],
+            'notAnswered' => [
+                'controller' => 'VoteController',
+                'action' => 'showOtherQuestionsNotAnswered'
+            ],
+            'showYourQuestions' => [
+                'controller' => 'VoteController',
+                'action' => 'showYourQuestions'
             ],
             'vote' => [
                 'controller' => 'VoteController',
@@ -82,6 +90,10 @@ class Routing
             'formVote' => [
                 'controller' => 'VoteController',
                 'action' => 'formVote'
+            ],
+            'checkAnswerToQuestion' => [
+                'controller' => 'VoteController',
+                'action' => 'checkAnswerToQuestion'
             ]
         ];
     }

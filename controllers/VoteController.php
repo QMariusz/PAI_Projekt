@@ -23,19 +23,52 @@ class VoteController extends AppController
         $this->render("questionVote", "");
     }
 
-    public function showOtherQuestions(){
+    public function showOtherQuestionsAnswered(){
         $voteMapper = new VoteMapper();
 
         header('Content-type: application/json');
         http_response_code(200);
 
-        echo $voteMapper->showOtherQuestions() ? json_encode($voteMapper->showOtherQuestions()) : '';
+        echo $voteMapper->showOtherQuestionsAnswered() ? json_encode($voteMapper->showOtherQuestionsAnswered()) : '';
+    }
+
+    public function showOtherQuestionsNotAnswered(){
+        $voteMapper = new VoteMapper();
+
+        header('Content-type: application/json');
+        http_response_code(200);
+
+        echo $voteMapper->showOtherQuestionsNotAnswered() ? json_encode($voteMapper->showOtherQuestionsNotAnswered()) : '';
+    }
+
+    public function showYourQuestions(){
+        $voteMapper = new VoteMapper();
+
+        header('Content-type: application/json');
+        http_response_code(200);
+
+        echo $voteMapper->showYourQuestions() ? json_encode($voteMapper->showYourQuestions()) : '';
     }
 
     public function formVote(){
-        $mapper = new QuestionMapper();
+        $mapper = new VoteMapper();
         $mapper->saveVote($_POST['voteRadio']);
 
-        return $this->render('index', ['text' => 'Account created']);
+        return $this->render('index', ['text' => 'Vote saved']);
+    }
+
+    public function checkAnswerToQuestion(){
+        $voteMapper = new VoteMapper();
+
+        header('Content-type: application/json');
+
+        if($voteMapper->checkAnswerToQuestion()) {
+            http_response_code(200);
+        }
+        else{
+            http_response_code(201);
+        }
+
+        echo $voteMapper->checkAnswerToQuestion() ? json_encode($voteMapper->checkAnswerToQuestion()) : '';
     }
 }

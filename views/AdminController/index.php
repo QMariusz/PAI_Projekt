@@ -6,25 +6,25 @@
 <body>
 <div class="container">
     <div class="row">
-        <h1 class="col-12 pl-0">ADMIN HERE </h1>
-        <h4 class="mt-4">ALL Questions:</h4>
+        <h1 class="col-12 pl-0">ADMIN PANEL </h1>
+        <h4 class="mt-4">Questions:</h4>
         <table class="table table-hover">
             <thead>
             <tr>
                 <th>Author</th>
                 <th>Question</th>
-                <th>AnswersData</th>
-                <th>Date</th>
-                <th>Action</th>
+                <th>Answers</th>
+                <th>Votes</th>
+                <th>Add Date</th>
+                <th>Modify Date</th>
             </tr>
             </thead>
             <tbody class="question_list">
             </tbody>
         </table>
     </div>
-    <br> <br>
     <div class="row">
-        <h4 class="mt-4">ALL Users:</h4>
+        <h4 class="mt-4">Users:</h4>
         <table class="table table-hover">
             <thead>
             <tr>
@@ -48,6 +48,7 @@
     </div>
 </div>
 <script>
+//    chyba to ajaxem trzeba zrobic
     window.onload = getAllQuetionsJS();
     window.onload = getAllUsersJS();
 </script>

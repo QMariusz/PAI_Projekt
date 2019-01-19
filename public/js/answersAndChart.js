@@ -47,6 +47,10 @@ function showChart(name, answers, votes) {
     allColors = ["#F1C40F", "#A93226", "#76448A", "#1F618D", "#17A589", "#229954", "#CA6F1E", "#BA4A00", "#D0D3D4", "#839192", "#212F3D", "#E67E22"];
     const shuffled = allColors.sort(() => .5 - Math.random());// shuffle
     colors = shuffled.slice(0,vote.length);
+    const $list = $('.add_vote');
+    $list.empty();
+    const $list2 = $('.main2');
+    $list2.append(`<canvas class="mainChart" id="mainChart" width="200" height="250"></canvas>`);
     new Chart(document.getElementById("mainChart"), {
         type: 'pie',
         data: {

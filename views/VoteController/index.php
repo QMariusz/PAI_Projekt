@@ -31,10 +31,15 @@ if(isset($_SESSION) && !empty($_SESSION)) {
         <div class="add_vote">
         </div>
     </form>
+        <div class="main2" id="main">
+            <form action="?page=createQuestion" method="post" id="addForm">
+            </form>
+        </div>
     </div>
 </div>
 <script>
-    window.onload = showOtherQuestions();
+    window.onload = showOtherQuestionsAnswered();
+    window.onload = showOtherQuestionsNotAnswered();
 </script>
 </body>
 </html>

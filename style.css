@@ -12,7 +12,7 @@ a:focus{
 	opacity: 0.9;
 }
 
-.main{
+.main, .main2{
 	margin-left: 200px;
 	margin-top: 50px;
 	width: 600px;

@@ -66,7 +66,7 @@ class QuestionMapper
 
     public function getAllQuestions(){
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM questions RIGHT JOIN users ON questions.author_id = users.id');
+            $stmt = $this->database->connect()->prepare('SELECT * FROM questions LEFT JOIN users ON questions.author_id = users.id');
             $stmt->execute();
 
             $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -80,8 +80,8 @@ class QuestionMapper
     public function saveQuestion($question)
     {
         try {
-            $stmt = $this->database->connect()->prepare("INSERT INTO questions (author_id,  question_name, answers ,votes, add_date) 
-              VALUES ('".$question->getAuthorId()."','".$question->getName()."','".$question->getAnswers()."','".$question->getVotes()."','".$question->getAddDate()."')");
+            $stmt = $this->database->connect()->prepare("INSERT INTO questions (author_id,  question_name, answers ,votes, add_date, modify_date) 
+              VALUES ('".$question->getAuthorId()."','".$question->getName()."','".$question->getAnswers()."','".$question->getVotes()."','".$question->getAddDate()."','".$question->getAddDate()."')");
             $stmt->execute();
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();
@@ -112,23 +112,6 @@ class QuestionMapper
             return $questions;
         } catch (PDOException $e) {
             die();
-        }
-    }
-
-    public function saveVote($dane)
-    {
-        try {
-            $idAndAnswer = explode(",", $dane);
-            $answers = $this->getAnswersById($idAndAnswer[0]);
-            $answersArray = explode(", ", $answers);
-            $answersArray[$idAndAnswer[1]] += 1;
-            $updatedAnswers =  implode(", ",$answersArray);
-            $stmt = $this->database->connect()->prepare("UPDATE questions SET votes = :votes WHERE id = :id");
-            $stmt->bindParam(':votes', $updatedAnswers, PDO::PARAM_STR);
-            $stmt->bindParam(':id', $idAndAnswer[0], PDO::PARAM_INT);
-            $stmt->execute();
-        } catch (PDOException $e) {
-            return 'Error: ' . $e->getMessage();
         }
     }
 
