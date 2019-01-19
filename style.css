@@ -28,3 +28,7 @@ a:focus{
 .lewo{
 	float: left;
 }
+
+#Admin{
+	background-color: orange;
+}

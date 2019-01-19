@@ -14,7 +14,7 @@ class UserMapper
     public function getUsers()
     {
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM users WHERE id != :id;');
+            $stmt = $this->database->connect()->prepare('SELECT * FROM users RIGHT JOIN role ON users.role_id = role.id  WHERE users.id != :id;');
             $stmt->bindParam(':id', $_SESSION['id']);
             $stmt->execute();
 
@@ -29,12 +29,12 @@ class UserMapper
     public function getUser(string $nickname)
     {
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM users WHERE nickname = :nickname;');
+            $stmt = $this->database->connect()->prepare('SELECT * FROM users RIGHT JOIN role ON users.role_id = role.id WHERE users.nickname = :nickname;');
             $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             if($user['id']!=null) {
-                return new User($user['id'], $user['nickname'], $user['email'], $user['password'], $user['role']);
+                return new User($user['id'], $user['nickname'], $user['email'], $user['password'], $user['role_name']);
             }
             return null;
         } catch (PDOException $e) {

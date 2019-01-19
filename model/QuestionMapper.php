@@ -66,7 +66,7 @@ class QuestionMapper
 
     public function getAllQuestions(){
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM questions');
+            $stmt = $this->database->connect()->prepare('SELECT * FROM questions RIGHT JOIN users ON questions.author_id = users.id');
             $stmt->execute();
 
             $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -80,8 +80,8 @@ class QuestionMapper
     public function saveQuestion($question)
     {
         try {
-            $stmt = $this->database->connect()->prepare("INSERT INTO questions (author_id,  question_name, answers ,votes) 
-              VALUES ('".$question->getAuthorId()."','".$question->getName()."','".$question->getAnswers()."','".$question->getVotes()."')");
+            $stmt = $this->database->connect()->prepare("INSERT INTO questions (author_id,  question_name, answers ,votes, add_date) 
+              VALUES ('".$question->getAuthorId()."','".$question->getName()."','".$question->getAnswers()."','".$question->getVotes()."','".$question->getAddDate()."')");
             $stmt->execute();
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();

@@ -15,9 +15,9 @@ function getAllUsersJS(){
                 $list.append(`<tr>
                 <td>${el.nickname}</td>
                 <td>${el.email}</td>
-                <td>${el.role}</td>
+                <td>${el.role_name}</td>
                 <td>
-                <button class="btn btn-danger" type="button" onclick="deleteUser(${el.id})">
+                <button class="btn btn-danger" id="${el.role_name}" type="button" onclick="deleteUser(${el.id})">
                     <i class="material-icons">delete_forever</i>
                 </button>
                 </td>

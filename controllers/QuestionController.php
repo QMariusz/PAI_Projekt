@@ -41,7 +41,9 @@ class QuestionController extends AppController
                 }
                 $answers = rtrim($answers,  ", ");
                 $votes = rtrim($votes,  ", ");
-                $question = new Question(null, $_SESSION['id'], $_POST['questionName'], $answers,$votes);
+                $dzisiaj = date("j-n-Y:H:m");
+
+                $question = new Question(null, $_SESSION['id'], $_POST['questionName'], $answers,$votes, $dzisiaj, $dzisiaj);
                 $questionMapper->saveQuestion($question);
                 return $this->render('index', ['text' => 'Question created']);
 //            }

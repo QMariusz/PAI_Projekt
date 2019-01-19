@@ -13,7 +13,7 @@ function getAllQuetionsJS(){
             $list.empty();
             res.forEach(el => {
                 $list.append(`<tr>
-                <td>${el.author_id}</td>
+                <td>${el.nickname}</td>
                 <td>${el.question_name}</td>
                 <td>${el.answers}</td>
                 <td>${el.votes}</td>
