@@ -15,7 +15,6 @@
                     <div><?= $item ?></div>
                 <?php endforeach; ?>
             <?php endif; ?>
-
             <form action="?page=register" method="POST">
                 <div class="form-group row">
                     <label for="inputNickname" class="col-sm-1 col-form-label">

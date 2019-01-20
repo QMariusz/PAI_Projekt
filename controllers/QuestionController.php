@@ -15,43 +15,35 @@ class QuestionController extends AppController
     }
 
     public function addQuestion(){
-
-        $questionMapper = new QuestionMapper();
-        if ($this->isPost()) {
-
-//
-//            if($mapper->checkNickname($_POST['nickname'])) {
-//                return $this->render('register', ['message' => ['Nickname already in use']]);
-//            }
-
-//            else {
-//                $_SESSION["id"] = $user->getEmail();
-//                $_SESSION["role"] = $user->getRole();
-
-//                $url = "http://$_SERVER[HTTP_HOST]/";
-//                header("Location: {$url}?page=index");
-//                exit();
-                $answers = '';
-                $votes = '';
-                foreach($_POST as $key=>$value ) {
-                    if (strpos($key, 'answer') !== false) {
-                        $answers = $answers.$value.", ";
-                        $votes = $votes.'0, ';
+        if(isset($_SESSION['id'])) {
+            $questionMapper = new QuestionMapper();
+            if ($this->isPost()) {
+                    $answers = '';
+                    $votes = '';
+                    foreach($_POST as $key=>$value ) {
+                        if (strpos($key, 'answer') !== false) {
+                            $answers = $answers.$value.", ";
+                            $votes = $votes.'0, ';
+                        }
                     }
-                }
-                $answers = rtrim($answers,  ", ");
-                $votes = rtrim($votes,  ", ");
-                $now = date("j-m-y h:i");
+                    $answers = rtrim($answers,  ", ");
+                    $votes = rtrim($votes,  ", ");
+                    $now = date("j-m-y h:i");
 
-                $question = new Question(null, $_SESSION['id'], $_POST['questionName'], $answers,$votes, $now, $now);
-                $questionMapper->saveQuestion($question);
-                return $this->render('index', ['text' => 'Question created']);
-//            }
+                    $question = new Question(null, $_SESSION['id'], $_POST['questionName'], $answers,$votes, $now, $now);
+                    $questionMapper->saveQuestion($question);
+                    return $this->render('index', ['text' => 'Question created']);
+            }
+
+            $this->render('addQuestion', "");
         }
-
-        $this->render('addQuestion', "");
+        else {
+            $url = "http://$_SERVER[HTTP_HOST]/";
+            header("Location: {$url}?page=login");
+            exit();
+        }
     }
-
+    //uzywane?
     public function renderFunction($method, $number){
         $questionMapper = new QuestionMapper();
         $questions = $questionMapper->showQuestions();
@@ -69,8 +61,14 @@ class QuestionController extends AppController
     }
 
     public function search(){
-
-        $this->render('search', "");
+        if(isset($_SESSION['id'])) {
+            $this->render('search', "");
+        }
+        else {
+            $url = "http://$_SERVER[HTTP_HOST]/";
+            header("Location: {$url}?page=login");
+            exit();
+        }
     }
 
     public function deleteQuestion(): void

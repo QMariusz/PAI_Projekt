@@ -4,21 +4,14 @@
 <?php include(dirname(__DIR__) . '/head.html'); ?>
 
 <body>
-<?php
-if(isset($_SESSION) && !empty($_SESSION)) {
-    print_r($_SESSION);
-}
-?>
 <div class="container">
     <?php include(dirname(__DIR__) . '/navbar.html'); ?>
     <div class="lewo">
-        <h1 class="col-12 pl-0">ADMIN PANEL</h1>
-
-        <h4 class="mt-4">Your data:</h4>
+        <h1 class="col-12 pl-0">Your Questions</h1>
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Pytanie</th>
+                <th>Pytania:</th>
 
             </tr>
             </thead>

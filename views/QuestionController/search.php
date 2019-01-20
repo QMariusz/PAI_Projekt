@@ -7,11 +7,10 @@
 <div class="container">
     <?php include(dirname(__DIR__) . '/navbar.html'); ?>
     <nav class="navbar navbar-dark default-color">
-        <div class="form-group row">
-            <div class="col-sm-11">
+        <div class="row">
+            <h4 class="mt-4">Search:</h4>
                 <input type="text" name="answer0" class="form-control" id="inputSearch" placeholder="answer" required/>
-            </div>
-            <a class="btn btn-primary btn-lg float-left" type="submit" id="submit" onclick="showQuestions('searchResult')" role="button">Search</a>
+                <a class="btn btn-primary btn-lg float-left" type="submit" id="submit" onclick="showQuestions('searchResult')" role="button">Search</a>
         </div>
     </nav>
     <div class="lewo">

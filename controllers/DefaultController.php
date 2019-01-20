@@ -16,8 +16,14 @@ class DefaultController extends AppController
 
     public function index()
     {
-
-        $this->render("index", "");
+        if(isset($_SESSION['id'])) {
+            $this->render("index", "");
+        }
+        else {
+            $url = "http://$_SERVER[HTTP_HOST]/";
+            header("Location: {$url}?page=login");
+            exit();
+        }
     }
 
     public function login()
@@ -59,11 +65,15 @@ class DefaultController extends AppController
                 return $this->render('register', ['message' => ['Nickname already in use']]);
             }
 
+            else if ($mapper->checkEmail($_POST['email'])) {
+                return $this->render('register', ['message' => ['Email already in use']]);
+            }
+
             else if($_POST['password'] !== $_POST['passwordConfirm']){
                 return $this->render('register', ['message' => ['Passwords are different']]);
             }
             else{
-                $user = new User(null, $_POST['nickname'], $_POST['email'], $_POST['password'], 1);
+                $user = new User(null, $_POST['nickname'], $_POST['email'], $_POST['password'], 2);
                 $mapper->saveUser($user);
                 return $this->render('login', ['text' => 'Account created']);
             }

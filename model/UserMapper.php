@@ -29,7 +29,7 @@ class UserMapper
     public function getUser(string $nickname)
     {
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM users RIGHT JOIN role ON users.role_id = role.role_id WHERE users.nickname = :nickname;');
+            $stmt = $this->database->connect()->prepare('SELECT * FROM `user_with_role` WHERE nickname = :nickname;');
             $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -68,10 +68,43 @@ class UserMapper
         }
     }
 
+    public function checkEmail($email){
+        try {
+            $stmt = $this->database->connect()->prepare("SELECT * FROM users WHERE email = :email;");
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($user == false){
+                return false;
+            }
+            return true;
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
+        }
+    }
+
     public function deleteUser($id)
     {
+        $connection = $this->database->connect();
+        $connection->beginTransaction();
         try {
+            $stmt = $this->database->connect()->prepare("DELETE FROM questions WHERE author_id = :id;");
+            $stmt ->bindParam(':id', $id, PDO::PARAM_STR);
+            $stmt ->execute();
+
             $stmt = $this->database->connect()->prepare("DELETE FROM users WHERE id = :id;");
+            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+            $stmt->execute();
+            $connection->commit();
+        } catch (PDOException $e) {
+            $connection->rollBack();
+        }
+    }
+
+    public function promoteUser($id)
+    {
+        try {
+            $stmt = $this->database->connect()->prepare("UPDATE users SET role_id = 1 WHERE id = :id;");
             $stmt->bindParam(':id', $id, PDO::PARAM_STR);
             $stmt->execute();
         } catch (PDOException $e) {

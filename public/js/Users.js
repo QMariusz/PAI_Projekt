@@ -20,6 +20,9 @@ function getAllUsersJS(){
                 <button class="btn btn-danger" id="${el.role_name}" type="button" onclick="deleteUser(${el.id})">
                     <i class="material-icons">delete_forever</i>
                 </button>
+                <button class="btn btn-danger" id="${el.role_name}_promote" type="button" onclick="promoteUser(${el.id})">
+                    <i class="material-icons">card_travel</i>
+                </button>
                 </td>
                 </tr>`);
             });
@@ -41,7 +44,27 @@ function deleteUser(id) {
         },
         success: function() {
             alert('Selected user successfully deleted from database!');
-            showQuestions();
+            getAllUsersJS();
+        }
+    });
+}
+
+function promoteUser(id) {
+    if (!confirm('Do you want to promote this user?')) {
+        return;
+    }
+
+    const apiUrl = "http://localhost:8001";
+
+    $.ajax({
+        url: apiUrl + '/?page=promoteUser',
+        method: "POST",
+        data: {
+            id: id
+        },
+        success: function () {
+            alert('Selected user successfully promoted!');
+            getAllUsersJS();
         }
     });
 }

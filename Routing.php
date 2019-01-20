@@ -47,6 +47,10 @@ class Routing
                 'controller' => 'AdminController',
                 'action' => 'deleteUser'
             ],
+            'promoteUser' => [
+                'controller' => 'AdminController',
+                'action' => 'promoteUser'
+            ],
             'search' => [
                 'controller' => 'QuestionController',
                 'action' => 'search'

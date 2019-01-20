@@ -14,8 +14,15 @@ class AdminController extends AppController
 
     public function index(): void
     {
-        $user = new UserMapper();
-        $this->render('index', ['user' => $user->getUser($_SESSION['id'])]);
+        if(isset($_SESSION['id']) && isset($_SESSION['role']) && $_SESSION['role'] == "Admin") {
+            $user = new UserMapper();
+            $this->render('index', ['user' => $user->getUser($_SESSION['id'])]);
+        }
+        else {
+            $url = "http://$_SERVER[HTTP_HOST]/";
+            header("Location: {$url}?page=index");
+            exit();
+        }
     }
 
     public function getAllUsers(): void
@@ -37,6 +44,19 @@ class AdminController extends AppController
 
         $user = new UserMapper();
         $user->deleteUser((int)$_POST['id']);
+
+        http_response_code(200);
+    }
+
+    public function promoteUser(): void
+    {
+        if (!isset($_POST['id'])) {
+            http_response_code(404);
+            return;
+        }
+
+        $user = new UserMapper();
+        $user->promoteUser((int)$_POST['id']);
 
         http_response_code(200);
     }

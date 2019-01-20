@@ -32,3 +32,16 @@ a:focus{
 #Admin{
 	background-color: orange;
 }
+
+#Admin_promote{
+	visibility: hidden;
+}
+
+#User_promote{
+	background-color: darkgreen;
+}
+
+#inputSearch{
+	margin-bottom: 5px;
+	margin-left: 5px;
+}

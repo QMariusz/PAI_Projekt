@@ -13,14 +13,26 @@ class VoteController extends AppController
 
     public function index()
     {
-
-        $this->render("index", "");
+        if (!isset($_POST['id'])) {
+            $this->render("index", "");
+        }
+        else {
+            $url = "http://$_SERVER[HTTP_HOST]/";
+            header("Location: {$url}?page=login");
+            exit();
+        }
     }
 
     public function questionVote()
     {
-
-        $this->render("questionVote", "");
+        if (!isset($_POST['id'])) {
+            $this->render("questionVote", "");
+        }
+        else {
+            $url = "http://$_SERVER[HTTP_HOST]/";
+            header("Location: {$url}?page=login");
+            exit();
+        }
     }
 
     public function showOtherQuestionsAnswered(){
@@ -51,10 +63,17 @@ class VoteController extends AppController
     }
 
     public function formVote(){
-        $mapper = new VoteMapper();
-        $mapper->saveVote($_POST['voteRadio']);
+        if (!isset($_POST['id'])) {
+            $mapper = new VoteMapper();
+            $mapper->saveVote($_POST['voteRadio']);
 
-        return $this->render('index', ['text' => 'Vote saved']);
+            return $this->render('index', ['text' => 'Vote saved']);
+        }
+        else {
+            $url = "http://$_SERVER[HTTP_HOST]/";
+            header("Location: {$url}?page=login");
+            exit();
+        }
     }
 
     public function checkAnswerToQuestion(){
