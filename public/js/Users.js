@@ -2,25 +2,23 @@ function getAllUsersJS(){
     const apiUrl = "http://localhost:8001";
     const $list = $('.user_list');
     const endpoint = '/?page=allUsers';
-
+    $list.empty();
     $.ajax({
         type: 'POST',
         url : apiUrl + endpoint,
         dataType : 'json'
     })
         .done((res) => {
-            console.log(res);
-            $list.empty();
             res.forEach(el => {
                 $list.append(`<tr>
                 <td>${el.nickname}</td>
                 <td>${el.email}</td>
                 <td>${el.role_name}</td>
                 <td>
-                <button class="btn btn-danger" id="${el.role_name}" type="button" onclick="deleteUser(${el.id})">
+                <button class="btn btn-danger" id="${el.role_name}" type="button" onclick="deleteUser(${el.id_user})">
                     <i class="material-icons">delete_forever</i>
                 </button>
-                <button class="btn btn-danger" id="${el.role_name}_promote" type="button" onclick="promoteUser(${el.id})">
+                <button class="btn btn-danger" id="${el.role_name}_promote" type="button" onclick="promoteUser(${el.id_user})">
                     <i class="material-icons">card_travel</i>
                 </button>
                 </td>

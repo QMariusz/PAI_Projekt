@@ -32,7 +32,7 @@ class QuestionController extends AppController
 
                     $question = new Question(null, $_SESSION['id'], $_POST['questionName'], $answers,$votes, $now, $now);
                     $questionMapper->saveQuestion($question);
-                    return $this->render('index', ['text' => 'Question created']);
+                    return $this->render('addQuestion', ['message' => ['Question created']]);
             }
 
             $this->render('addQuestion', "");
@@ -42,13 +42,6 @@ class QuestionController extends AppController
             header("Location: {$url}?page=login");
             exit();
         }
-    }
-    //uzywane?
-    public function renderFunction($method, $number){
-        $questionMapper = new QuestionMapper();
-        $questions = $questionMapper->showQuestions();
-
-        $this->render('index', "");
     }
 
     public function showQuestions(){

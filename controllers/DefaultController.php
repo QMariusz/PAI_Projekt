@@ -75,7 +75,7 @@ class DefaultController extends AppController
             else{
                 $user = new User(null, $_POST['nickname'], $_POST['email'], $_POST['password'], 2);
                 $mapper->saveUser($user);
-                return $this->render('login', ['text' => 'Account created']);
+                return $this->render('login', ['message' => ['Account created']]);
             }
         }
 
@@ -87,6 +87,6 @@ class DefaultController extends AppController
         session_unset();
         session_destroy();
 
-        $this->render('login', ['text' => 'You have been successfully logged out!']);
+        $this->render('login', ['message' => ['You have been successfully logged out!']]);
     }
 }

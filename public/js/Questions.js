@@ -76,7 +76,7 @@ function showAnswersToVote(id, name, answers, votes) {
     if(checkAnswerToQuestion(id)) {
         $list.empty();
         $list2.empty();
-        $list.append(name);
+        $list.append(`<b>`+name+`</b>`);
         for (var i = 0; i < odp.length; i++) {
             $list.append(`<div class="form-check">
             <input class="form-check-input" type="radio" name="voteRadio" id="voteRadio" value="` + id + "," + i + `" checked>
@@ -85,8 +85,8 @@ function showAnswersToVote(id, name, answers, votes) {
             </label>
             </div>`);
         }
-        $list.append(`
-        <input type="submit" value="Vote" class="btn btn-primary btn-lg float-right" />`);
+        $list.append(`<br>
+        <input type="submit" value="Vote" class="btn btn-primary btn-lg float-left" />`);
         <!--do ajaxa podciagn¹æ to-->
     }
     else{
@@ -132,6 +132,7 @@ function deleteQuestion(id) {
         success: function() {
             alert('Selected question successfully deleted from database!');
             showQuestions();
+            getAllQuetionsJS();
         }
     });
 }

@@ -8,7 +8,12 @@
     <?php include(dirname(__DIR__).'/navbar.html'); ?>
     <div class="lewo">
         <h1 class="col-12 pl-0">Vote</h1>
-
+        <hr>
+        <?php if(isset($message)): ?>
+            <?php foreach($message as $item): ?>
+                <div><?= $item ?></div>
+            <?php endforeach; ?>
+        <?php endif; ?>
         <table class="table table-hover">
             <thead>
             <tr>

@@ -67,7 +67,7 @@ class VoteController extends AppController
             $mapper = new VoteMapper();
             $mapper->saveVote($_POST['voteRadio']);
 
-            return $this->render('index', ['text' => 'Vote saved']);
+            return $this->render('index', ['message' => ['Vote saved']]);
         }
         else {
             $url = "http://$_SERVER[HTTP_HOST]/";

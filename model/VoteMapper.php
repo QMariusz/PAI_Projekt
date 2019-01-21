@@ -36,18 +36,15 @@ class VoteMapper
             $questions2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             $stmt = $this->database->connect()->prepare('SELECT *  FROM questions;');
-            $stmt->bindParam(':id', $_SESSION['id'], PDO::PARAM_STR);
             $stmt->execute();
             $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($questions as $key => $value){
                 foreach ($questions2 as $value2){
-                    if($value2['id']==$value['id']){
+                    if($value2['question_id']==$value['id']){
                         array_splice($questions, $key, 1, 2);
                     }
                 }
             }
-//            array_diff($questions, $questions2);
-
             return $questions;
         } catch (PDOException $e) {
             die();

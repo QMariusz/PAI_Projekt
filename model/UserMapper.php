@@ -14,7 +14,7 @@ class UserMapper
     public function getUsers()
     {
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM users RIGHT JOIN role ON users.role_id = role.role_id  WHERE users.id != :id;');
+            $stmt = $this->database->connect()->prepare('SELECT * FROM users RIGHT JOIN role ON users.role_id = role.role_id  WHERE users.id_user != :id;');
             $stmt->bindParam(':id', $_SESSION['id']);
             $stmt->execute();
 
@@ -28,6 +28,7 @@ class UserMapper
 
     public function getUser(string $nickname)
     {
+        //widok
         try {
             $stmt = $this->database->connect()->prepare('SELECT * FROM `user_with_role` WHERE nickname = :nickname;');
             $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
@@ -92,7 +93,7 @@ class UserMapper
             $stmt ->bindParam(':id', $id, PDO::PARAM_STR);
             $stmt ->execute();
 
-            $stmt = $this->database->connect()->prepare("DELETE FROM users WHERE id = :id;");
+            $stmt = $this->database->connect()->prepare("DELETE FROM users WHERE id_user = :id;");
             $stmt->bindParam(':id', $id, PDO::PARAM_STR);
             $stmt->execute();
             $connection->commit();
@@ -104,7 +105,7 @@ class UserMapper
     public function promoteUser($id)
     {
         try {
-            $stmt = $this->database->connect()->prepare("UPDATE users SET role_id = 1 WHERE id = :id;");
+            $stmt = $this->database->connect()->prepare("UPDATE users SET role_id = 1 WHERE id_user = :id;");
             $stmt->bindParam(':id', $id, PDO::PARAM_STR);
             $stmt->execute();
         } catch (PDOException $e) {

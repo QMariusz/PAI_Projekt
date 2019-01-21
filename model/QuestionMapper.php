@@ -55,7 +55,7 @@ class QuestionMapper
             $queryArray = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $questionsArray = array();
             foreach ($queryArray as $item) {
-                array_push($questionsArray, new Question($item['id'], $item['author_id'], $item['question_name'], $item['answers'], $item['votes']));
+                array_push($questionsArray, new Question($item['question_id'], $item['author_id'], $item['question_name'], $item['answers'], $item['votes']));
             }
 
             return $questionsArray;
@@ -66,7 +66,7 @@ class QuestionMapper
 
     public function getAllQuestions(){
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM questions LEFT JOIN users ON questions.author_id = users.id');
+            $stmt = $this->database->connect()->prepare('SELECT * FROM questions LEFT JOIN users ON questions.author_id = users.id_user');
             $stmt->execute();
 
             $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);

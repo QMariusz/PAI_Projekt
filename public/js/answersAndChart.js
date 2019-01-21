@@ -50,6 +50,7 @@ function showChart(name, answers, votes) {
     const $list = $('.add_vote');
     $list.empty();
     const $list2 = $('.main2');
+    $list2.empty();
     $list2.append(`<canvas class="mainChart" id="mainChart" width="200" height="250"></canvas>`);
     new Chart(document.getElementById("mainChart"), {
         type: 'pie',
