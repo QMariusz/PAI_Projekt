@@ -43,6 +43,7 @@ function deleteUser(id) {
         success: function() {
             alert('Selected user successfully deleted from database!');
             getAllUsersJS();
+            getAllQuetionsJS();
         }
     });
 }

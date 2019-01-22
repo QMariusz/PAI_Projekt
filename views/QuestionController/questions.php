@@ -6,6 +6,7 @@
 <body>
 <div class="container">
     <?php include(dirname(__DIR__) . '/navbar.html'); ?>
+    <div class="main3" id="main">
     <div class="lewo">
         <h1 class="col-12 pl-0">Your Questions</h1>
         <table class="table table-hover">
@@ -22,6 +23,8 @@
     <div class="main" id="main">
         <canvas id="mainChart"></canvas>
     </div>
+    </div>
+    <div class="stopka">Mariusz Orlowicz</div>
 </div>
 <script>
     window.onload = showQuestions("showYourQuestions");

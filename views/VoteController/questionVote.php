@@ -6,6 +6,7 @@
 <body>
 <div class="container">
     <?php include(dirname(__DIR__).'/navbar.html'); ?>
+    <div class="main3" id="main">
     <div class="row">
         <h1 class="col-12 pl-0">Question Vote</h1>
         <h4 class="mt-4">Select Question:</h4>
@@ -29,7 +30,8 @@
         </form>
         <canvas id="mainChart" width="200" height="250"></canvas>
     </div>
-
+    </div>
+    <div class="stopka">Mariusz Orlowicz</div>
 </div>
 <script>
 </script>

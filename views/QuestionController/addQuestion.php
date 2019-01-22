@@ -6,6 +6,8 @@
 <body>
 <div class="container" >
     <?php include(dirname(__DIR__).'/navbar.html'); ?>
+    <div class="main3" id="main">
+
     <div clas="row">
         <div class="col-sm-6 offset-sm-3">
             <h1 class="panel-header">Create Question</h1>
@@ -34,6 +36,8 @@
             </form>
         </div>
     </div>
+    </div>
+    <div class="stopka">Mariusz Orlowicz</div>
 </div>
 
 </body>

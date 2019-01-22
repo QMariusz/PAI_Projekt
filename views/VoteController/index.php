@@ -6,9 +6,9 @@
 <body>
 <div class="container">
     <?php include(dirname(__DIR__).'/navbar.html'); ?>
+    <div class="main3" id="main">
     <div class="lewo">
         <h1 class="col-12 pl-0">Vote</h1>
-        <hr>
         <?php if(isset($message)): ?>
             <?php foreach($message as $item): ?>
                 <div><?= $item ?></div>
@@ -35,6 +35,8 @@
             </form>
         </div>
     </div>
+    </div>
+    <div class="stopka">Mariusz Orlowicz</div>
 </div>
 <script>
     window.onload = showOtherQuestionsAnswered();

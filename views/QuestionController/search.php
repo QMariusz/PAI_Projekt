@@ -6,6 +6,7 @@
 <body>
 <div class="container">
     <?php include(dirname(__DIR__) . '/navbar.html'); ?>
+    <div class="main3" id="main">
     <nav class="navbar navbar-dark default-color">
         <div class="row">
             <h4 class="mt-4">Search:</h4>
@@ -25,6 +26,8 @@
         </form>
         <canvas id="mainChart" width="200" height="250"></canvas>
     </div>
+    </div>
+    <div class="stopka">Mariusz Orlowicz</div>
 </div>
 </body>
 </html>
